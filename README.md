@@ -1,5 +1,13 @@
 # RedisBundle ![project status](http://stillmaintained.com/snc/SncRedisBundle.png) #
 
+## Forked and Merged ##
+
+We needed support for Predis 1.0, and more than one master connection. Upstream is very, very slow to merge fixes. So, we've merged a bunch of PRs from the upstream repo into this branch.
+
+- https://github.com/snc/SncRedisBundle/pull/172
+- https://github.com/snc/SncRedisBundle/pull/165
+
+
 ## About ##
 
 This bundle integrates [Predis](https://github.com/nrk/predis) and [phpredis](https://github.com/nicolasff/phpredis) into your Symfony2 application.
