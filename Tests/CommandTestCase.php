@@ -12,6 +12,7 @@
 namespace Snc\RedisBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Snc\RedisBundle\Client\Phpredis\Client as PhpredisClient;
 
 /**
  * Base Class for command tests
@@ -32,7 +33,7 @@ abstract class CommandTestCase extends \PHPUnit_Framework_TestCase
     protected $predisClient;
 
     /**
-     * @var \Snc\RedisBundle\Client\Phpredis\Client
+     * @var PhpredisClient
      */
     protected $phpredisClient;
 
@@ -52,7 +53,8 @@ abstract class CommandTestCase extends \PHPUnit_Framework_TestCase
         $this->application = new Application($kernel);
 
         $this->predisClient = $this->getMock('\\Predis\\Client');
-        $this->phpredisClient = $this->getMockBuilder('\\Snc\\RedisBundle\\Client\\Phpredis\\Client')
+
+        $this->phpredisClient = $this->getMockBuilder('PhpredisClient')
             ->disableOriginalConstructor()
             ->getMock();
 
