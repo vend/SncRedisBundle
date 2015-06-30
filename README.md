@@ -1,12 +1,24 @@
 # RedisBundle ![project status](http://stillmaintained.com/snc/SncRedisBundle.png) #
 
-## Forked and Merged ##
+## Forked and Fixed ##
 
-We needed support for Predis 1.0, and more than one master connection. Upstream is very, very slow to merge fixes. So, we've merged a bunch of PRs from the upstream repo into this branch.
+We needed support for Predis 1.0, and more than one master connection. Upstream is very, very slow to merge fixes, and the current upstream master version has some potentially catastrophic bugs. So, we've merged a bunch of PRs from the upstream repo into this branch. Here are the details:
 
-- https://github.com/snc/SncRedisBundle/pull/172
-- https://github.com/snc/SncRedisBundle/pull/165
+* snc/SncRedisBundle#165
+  * Fixes multiple connections with same alias overwriting other connections' parameters
+  * Required to have any more than a single client with replication (because an alias of 'master' is required for replicated clients)
+* snc/SncRedisBundle#172
+  * Adds support for Predis 1.0.x
+* snc/SncRedisBundle#186
+  * Fix for snc/SncRedisBundle#185, which otherwise causes the database number to be ignored when using multiple persistent connections to the same host
+* snc/SncRedisBundle#187
+  * Upgrades PHPUnit to stable
+  * Inclues PHPUnit in the composer autoloader for ease of development
+* https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel
+  * Not opened as a PR, because it would require rebasing
+  * Makes the usage of the logger compatible with PSR3
 
+We plan to say up to date with changes upstream. If you'd like to use this fork as a stable base for further development, you can suggest PRs for us to merge. (Either opening them here, or just by linking us to the upstream PR.)
 
 ## About ##
 
@@ -14,11 +26,7 @@ This bundle integrates [Predis](https://github.com/nrk/predis) and [phpredis](ht
 
 ## Branches ##
 
-* Use version `1.0.*` or the `1.0` branch if you are using Symfony2 `2.0.*`. [![build status](https://secure.travis-ci.org/snc/SncRedisBundle.png?branch=1.0)](https://secure.travis-ci.org/snc/SncRedisBundle)
-* Use version `1.1.*` or the `1.1` branch if you are using Symfony2 `>=2.1,<3.0`. [![build status](https://secure.travis-ci.org/snc/SncRedisBundle.png?branch=1.1)](https://secure.travis-ci.org/snc/SncRedisBundle)
-* The `master` branch targets a new major version of this bundle and contains breaking changes. Use it at your own risk! [![build status](https://secure.travis-ci.org/snc/SncRedisBundle.png?branch=master)](https://secure.travis-ci.org/snc/SncRedisBundle)
-
-This bundle is also available via [composer](https://github.com/composer/composer), find it on [packagist](http://packagist.org/packages/snc/redis-bundle).
+* The `master` branch is the main supported branch. It is aliased as 2.0.x-dev (to prevent version conflicts). It targets Predis 1.0 and newer versions of Symfony (at least >= 2.1.x).
 
 ## Documentation ##
 
