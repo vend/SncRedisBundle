@@ -4,19 +4,19 @@
 
 We needed support for Predis 1.0, and more than one master connection. Upstream is very, very slow to merge fixes, and the current upstream master version has some potentially catastrophic bugs. So, we've merged a bunch of PRs from the upstream repo into this branch. Here are the details:
 
-* snc/SncRedisBundle#165
+* [snc/SncRedisBundle#165](https://github.com/snc/SncRedisBundle/pull/165)
   * Fixes multiple connections with same alias overwriting other connections' parameters
   * Required to have any more than a single client with replication (because an alias of 'master' is required for replicated clients)
-* snc/SncRedisBundle#172
+* [snc/SncRedisBundle#172](https://github.com/snc/SncRedisBundle/pull/172)
   * Adds support for Predis 1.0.x
-* snc/SncRedisBundle#186
-  * Fix for snc/SncRedisBundle#185, which otherwise causes the database number to be ignored when using multiple persistent connections to the same host
-* snc/SncRedisBundle#187
+* [snc/SncRedisBundle#186](https://github.com/snc/SncRedisBundle/pull/186)
+  * Fix for [snc/SncRedisBundle#185](https://github.com/snc/SncRedisBundle/issues/185), which otherwise causes the database number to be ignored when using multiple persistent connections to the same host
+* [snc/SncRedisBundle#187](https://github.com/snc/SncRedisBundle/pull/187)
   * Upgrades PHPUnit to stable
   * Inclues PHPUnit in the composer autoloader for ease of development
-* https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel
+* [vend:feature-lower-loglevel](https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel)
   * Not opened as a PR, because it would require rebasing
-  * Makes the usage of the logger compatible with PSR3
+  * Makes usage of the logger compatible with PSR3
 
 We plan to say up to date with changes upstream. If you'd like to use this fork as a stable base for further development, you can suggest PRs for us to merge. (Either opening them here, or just by linking us to the upstream PR.)
 

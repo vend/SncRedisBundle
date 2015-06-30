@@ -4,19 +4,19 @@
 
 This version is a development branch, focused on merging PRs that have been ignored by upstream so far. The merged PRs are:
 
-* snc/SncRedisBundle#165
-  * Fixes multiple connections with same alias overwriting other connections parameters
+* [snc/SncRedisBundle#165](https://github.com/snc/SncRedisBundle/pull/165)
+  * Fixes multiple connections with same alias overwriting other connections' parameters
   * Required to have any more than a single client with replication (because an alias of 'master' is required for replicated clients)
-* snc/SncRedisBundle#172
+* [snc/SncRedisBundle#172](https://github.com/snc/SncRedisBundle/pull/172)
   * Adds support for Predis 1.0.x
-* snc/SncRedisBundle#186
-  * Fix for snc/SncRedisBundle#185, which otherwise causes the database number to be ignored when using multiple persistent connections to the same host
-* snc/SncRedisBundle#187
+* [snc/SncRedisBundle#186](https://github.com/snc/SncRedisBundle/pull/186)
+  * Fix for [snc/SncRedisBundle#185](https://github.com/snc/SncRedisBundle/issues/185), which otherwise causes the database number to be ignored when using multiple persistent connections to the same host
+* [snc/SncRedisBundle#187](https://github.com/snc/SncRedisBundle/pull/187)
   * Upgrades PHPUnit to stable
   * Inclues PHPUnit in the composer autoloader for ease of development
-* https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel
+* [vend:feature-lower-loglevel](https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel)
   * Not opened as a PR, because it would require rebasing
-  * Makes the usage of the logger compatible with PSR3
+  * Makes usage of the logger compatible with PSR3
 
 
 ## Older notes ##
