@@ -22,15 +22,18 @@ class RedisLogger
     protected $nbCommands = 0;
     protected $commands = array();
     protected $start;
+    protected $debug;
 
     /**
      * Constructor.
      *
      * @param LoggerInterface $logger A LoggerInterface instance
+     * @param bool $debug
      */
-    public function __construct(LoggerInterface $logger = null)
+    public function __construct(LoggerInterface $logger = null, $debug = false)
     {
         $this->logger = $logger;
+        $this->debug  = $debug;
     }
 
     /**
@@ -46,7 +49,10 @@ class RedisLogger
         ++$this->nbCommands;
 
         if (null !== $this->logger) {
-            $this->commands[] = array('cmd' => $command, 'executionMS' => $duration, 'conn' => $connection, 'error' => $error);
+            if ($this->debug) {
+                $this->commands[] = array('cmd' => $command, 'executionMS' => $duration, 'conn' => $connection, 'error' => $error);
+            }
+
             if ($error) {
                 $this->logger->error('Command "' . $command . '" failed (' . $error . ')');
             } else {
