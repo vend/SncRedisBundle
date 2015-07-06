@@ -17,6 +17,8 @@ We needed support for Predis 1.0, and more than one master connection. Upstream 
 * [vend:feature-lower-loglevel](https://github.com/snc/SncRedisBundle/compare/705abcc...vend:feature-lower-loglevel)
   * Not opened as a PR, because it would require rebasing
   * Makes usage of the logger compatible with PSR3
+* [vend/SncRedisBundle#2](https://github.com/vend/SncRedisBundle/pull/2)
+  * Fixes memory leak in data collector/logger for production environments
 
 We plan to say up to date with changes upstream. If you'd like to use this fork as a stable base for further development, you can suggest PRs for us to merge. (Either opening them here, or just by linking us to the upstream PR.)
 
