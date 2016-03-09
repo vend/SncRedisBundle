@@ -28,7 +28,7 @@ This bundle integrates [Predis](https://github.com/nrk/predis) and [phpredis](ht
 
 ## Branches ##
 
-* The `master` branch is the main supported branch. It is aliased as 2.0.x-dev (to prevent version conflicts). It targets Predis 1.0 and newer versions of Symfony (at least >= 2.1.x).
+* The `master` branch is the main supported branch. It is aliased as 2.0.x-dev and tagged as versions in the 3.0 range (to prevent version conflicts). It targets Predis 1.0 and newer versions of Symfony (at least >= 2.1.x).
 
 ## Documentation ##
 
