@@ -160,7 +160,7 @@ class SncRedisExtension extends Extension
         $profileId = sprintf('snc_redis.client.%s_profile', $client['alias']);
         $profileDef = new Definition(get_class(\Predis\Profile\Factory::get($client['options']['profile']))); // TODO get_class alternative?
         $profileDef->setPublic(false);
-        $profileDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $profileDef->setShared(false);
         if (null !== $client['options']['prefix']) {
             $processorId = sprintf('snc_redis.client.%s_processor', $client['alias']);
             $processorDef = new Definition('Predis\Command\Processor\KeyPrefixProcessor');
@@ -174,11 +174,11 @@ class SncRedisExtension extends Extension
         $optionId = sprintf('snc_redis.client.%s_options', $client['alias']);
         $optionDef = new Definition($container->getParameter('snc_redis.client_options.class'));
         $optionDef->setPublic(false);
-        $optionDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $optionDef->setShared(false);
         $optionDef->addArgument($client['options']);
         $container->setDefinition($optionId, $optionDef);
         $clientDef = new Definition($container->getParameter('snc_redis.client.class'));
-        $clientDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $clientDef->setShared(false);
         if (1 === $connectionCount) {
             $clientDef->addArgument(new Reference(sprintf('snc_redis.connection.%s_%s_parameters', $client['alias'], $connectionAliases[0])));
         } else {
@@ -205,7 +205,7 @@ class SncRedisExtension extends Extension
         $parameterId = sprintf('snc_redis.connection.%s_%s_parameters', $clientAlias, $connection['alias']);
         $parameterDef = new Definition($container->getParameter('snc_redis.connection_parameters.class'));
         $parameterDef->setPublic(false);
-        $parameterDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $parameterDef->setShared(false);
         $parameterDef->addArgument($connection);
         $parameterDef->addTag('snc_redis.connection_parameters', array('clientAlias' => $clientAlias));
         $container->setDefinition($parameterId, $parameterDef);
@@ -232,7 +232,7 @@ class SncRedisExtension extends Extension
         $phpredisId = sprintf('snc_redis.phpredis.%s', $client['alias']);
         $phpredisDef = new Definition($container->getParameter('snc_redis.phpredis_client.class'));
         $phpredisDef->setPublic(false);
-        $phpredisDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $phpredisDef->setShared(false);
         $connectMethod = $client['options']['connection_persistent'] ? 'pconnect' : 'connect';
         $connectParameters = array();
         if (null !== $dsn->getSocket()) {
@@ -267,7 +267,7 @@ class SncRedisExtension extends Extension
             $clientDef->addArgument(new Reference('snc_redis.logger'));
         }
 
-        $clientDef->setScope(ContainerInterface::SCOPE_CONTAINER);
+        $clientDef->setShared(false);
         $clientDef->addMethodCall('setRedis', array(new Reference($phpredisId)));
 
         $container->setDefinition(sprintf('snc_redis.%s', $client['alias']), $clientDef);
@@ -321,7 +321,7 @@ class SncRedisExtension extends Extension
             $client = new Reference(sprintf('snc_redis.%s_client', $cache['client']));
             foreach ($cache['entity_managers'] as $em) {
                 $def = new Definition($container->getParameter('snc_redis.doctrine_cache.class'));
-                $def->setScope(ContainerInterface::SCOPE_CONTAINER);
+                $def->setShared(false);
                 $def->addMethodCall('setRedis', array($client));
                 if ($cache['namespace']) {
                     $def->addMethodCall('setNamespace', array($cache['namespace']));
@@ -330,7 +330,7 @@ class SncRedisExtension extends Extension
             }
             foreach ($cache['document_managers'] as $dm) {
                 $def = new Definition($container->getParameter('snc_redis.doctrine_cache.class'));
-                $def->setScope(ContainerInterface::SCOPE_CONTAINER);
+                $def->setShared(false);
                 $def->addMethodCall('setRedis', array($client));
                 if ($cache['namespace']) {
                     $def->addMethodCall('setNamespace', array($cache['namespace']));
